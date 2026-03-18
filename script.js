@@ -3,6 +3,21 @@ console.log("Hello world!");
 // Load the data from memory or create a new array
 let expenses = JSON.parse(localStorage.getItem('expenses')) || [];
 let total = 0;
+if (localStorage.getItem('theme') === 'dark') {     // Load the theme
+    document.body.classList.add('darkMode');
+}
+
+function toggleTheme() {
+    // 2. Toggle the class on the <body> tag
+    document.body.classList.toggle('darkMode');
+
+    // 3. Save the preference
+    if (document.body.classList.contains('darkMode')) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+}
 
 // Draw the expenses to the screen
 function renderExpenses(){
