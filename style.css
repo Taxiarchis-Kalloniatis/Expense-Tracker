@@ -1,41 +1,50 @@
 :root {
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     --bg-color: #f0f2f5;
-    --card-bg: #ffffff;
+    --card-bg: #ffffffcc;
     --text-color: #1c1e21;
     --button-bg: #007AFF;
 }
 
 .darkMode {
+    --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
     --bg-color: #18191a;
-    --card-bg: #242526;
+    --card-bg: #101f2f9a;
     --text-color: #e4e6eb;
     --button-bg: #2d88ff;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: 0.3s; /* Makes the switch smooth! */
+    /* 2. Apply the gradient bucket here */
+    background: var(--bg-gradient); 
+    min-height: 100vh; /* Ensures the gradient covers the whole screen */
+    margin: 0;
+    font-family: sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    color: var(--text-color); 
+    transition: 0.4s;
 }
 
-#input-container{
-    background-color: var(--card-bg);
-    color: var(--text-color);
-}
 
 input, button {
     padding: 12px;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 0px solid #ddd;
+}
+
+input {
+    background: var(--card-bg); /*rgba(255, 255, 255, .75); White with 70% transparency */
+    backdrop-filter: blur(10px); /* This blurs whatever is behind the card */
+    color: var(--text-color);
+    border: #e4e6eb;
+    border-width: 1px;
 }
 
 button {
-    background-color: #32CD32; /* Classic iOS Blue */
-    color: var(--text-color);
+    background-color: var(--button-bg);
     font-weight: bold;
     cursor: pointer;
 }
@@ -48,6 +57,7 @@ ul {
 
 li {
     background: var(--card-bg);
+    backdrop-filter: blur(10px);
     margin-top: 10px;
     padding: 10px;
     border-radius: 8px;
