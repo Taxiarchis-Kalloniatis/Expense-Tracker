@@ -1,29 +1,30 @@
 :root {
     --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    --bg-color: #f0f2f5;
+    --bg-color: #f7f6e0;
     --card-bg: #ffffffcc;
     --text-color: #1c1e21;
     --button-bg: #007AFF;
+    --shadow-color: rgba(0, 0, 0, 0.3);
 }
 
 .darkMode {
     --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-    --bg-color: #18191a;
-    --card-bg: #101f2f9a;
+    --bg-color: #232424;
+    --card-bg: #5656569a;
     --text-color: #e4e6eb;
     --button-bg: #2d88ff;
+    --shadow-color: rgba(161, 167, 170, 0.1);
 }
 
 body {
     /* 2. Apply the gradient bucket here */
-    background: var(--bg-gradient); 
-    min-height: 100vh; /* Ensures the gradient covers the whole screen */
+    background: var(--bg-color); 
     margin: 0;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     color: var(--text-color); 
     transition: 0.4s;
 }
@@ -33,6 +34,7 @@ input, button {
     padding: 12px;
     border-radius: 8px;
     border: 0px solid #ddd;
+    box-shadow: 0px 0px 30px var(--shadow-color);
 }
 
 input {
@@ -63,4 +65,5 @@ li {
     border-radius: 8px;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0px 0px 30px var(--shadow-color);
 }
