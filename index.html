@@ -9,22 +9,25 @@
 </head>
 
 <body>
-    <div id="gradient-overlay"></div>
-
     <button id="themeToggle" onclick="toggleTheme()">Light/Dark Mode</button>
     <h1>Expense Tracker</h1>
-    <p>Enter expense information and add it to the list.</p>
+    <p>Enter expense or income information and add it to the list.</p>
+
+    <div id="tabContainer">
+        <button class="tab-btn active" onclick="switchTab('expense')">Έξοδα</button>
+        <button class="tab-btn" onclick="switchTab('income')">Έσοδα</button>
+    </div>
 
     <div id="inputContainer">
-        <input type="text" id="nameInput" placeholder="Enter expense name">
-        <input type="number" id="amountInput" placeholder="Enter expense amount">
-        <button onclick="addExpense()">Add Item</button>
+        <input type="text" id="nameInput" placeholder="Enter name">
+        <input type="number" id="amountInput" placeholder="Enter amount">
+        <button onclick="addTransaction()">Add Item</button>
     </div>
 
     <ul id="expenseList">
         </ul>
 
-    <h3>Total Expenses: <span id="totalExpenses">0€</span> </h3>
+    <h3>Total: <span id="totalExpenses">0€</span> </h3>
 
     <script src="script.js" defer> </script>
 </body>

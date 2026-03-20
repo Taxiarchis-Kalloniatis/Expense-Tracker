@@ -7,6 +7,22 @@ if (localStorage.getItem('theme') === 'dark') {     // Load the theme
     document.body.classList.add('darkMode');
 }
 
+// Switching between expense and income
+let currentTab = 'expense';
+
+function switchTab(type){
+    currentTab = type;
+
+    // Αλλάζουμε την εμφάνιση των κουμπιών
+    const btns = document.querySelectorAll('.tab-btn');
+    btns.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    // Change the total amount text
+
+    renderExpenses();
+}
+
 function toggleTheme() {
     // 2. Toggle the class on the <body> tag
     document.body.classList.toggle('darkMode');
@@ -25,24 +41,31 @@ function renderExpenses(){
     const totalExpenses = document.getElementById("totalExpenses");
 
     list.innerHTML = ''; // Clears the list
-    total = 0;
+    let tabTotal = 0;
 
-    expenses.forEach((expense, index) => {
-        const item = document.createElement('li');
-        item.innerHTML = `
-            <span>${expense.name} -- ${Number(expense.amount).toFixed(2)}€</span>
-            <button onclick="deleteExpense(${index})" style="background:#FF3B30">X</button>
+    const filteredItems = expenses.filter(item => item.type == currentTab);
+
+    filteredItems.forEach((item, index) => {
+        const listItem = document.createElement('li');
+        // Αν είναι έσοδο, ίσως θέλουμε πράσινο χρώμα, αν είναι έξοδο κόκκινο
+        const color = item.type === 'income' ? '#4CD964' : '#FF3B30';
+        
+        listItem.innerHTML = `
+            <span style="border-left: 5px solid ${color}; padding-left: 10px;">
+                ${item.name} -- ${Number(item.amount).toFixed(2)}€
+            </span>
+            <button onclick="deleteExpense(${index})"}>X</button>
         `;
-        list.appendChild(item);
-        total += Number(expense.amount);
-    })
+        list.appendChild(listItem);
+        tabTotal += Number(item.amount);
+    });
 
-    totalExpenses.innerText = `${total.toFixed(2)}€`;
+    totalExpenses.innerText = `${Number(tabTotal).toFixed(2)}€`;
 
     localStorage.setItem('expenses', JSON.stringify(expenses)); // save!! (saves to browser's Filing Cabinet)
 }
 
-function addExpense() {
+function addTransaction() {
     const nameInput = document.getElementById("nameInput");
     const amountInput = document.getElementById("amountInput");
 
@@ -52,7 +75,8 @@ function addExpense() {
     // add content to the array 
     expenses.push({
         name: nameInput.value,
-        amount: amountInput.value
+        amount: amountInput.value,
+        type: currentTab,
     });
 
     nameInput.value = '';
