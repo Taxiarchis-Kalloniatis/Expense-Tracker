@@ -33,7 +33,6 @@ body {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
-    transition: 0.4s;
     padding: 10px;
 }
 
@@ -44,6 +43,7 @@ body {
     padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
+    transition: .4s;
 }
 
 .tab-btn.active {
