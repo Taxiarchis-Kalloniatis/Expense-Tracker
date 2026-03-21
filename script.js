@@ -43,9 +43,9 @@ function renderExpenses(){
     list.innerHTML = ''; // Clears the list
     let tabTotal = 0;
 
-    const filteredItems = expenses.filter(item => item.type == currentTab);
+    expenses.forEach((item, index) => {
+        if (item.type != currentTab) return; // Make sure we only add the correct type of transactions
 
-    filteredItems.forEach((item, index) => {
         const listItem = document.createElement('li');
         // Αν είναι έσοδο, ίσως θέλουμε πράσινο χρώμα, αν είναι έξοδο κόκκινο
         const color = item.type === 'income' ? '#4CD964' : '#FF3B30';
